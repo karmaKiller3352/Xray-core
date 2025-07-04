@@ -11,27 +11,28 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/xtls/xray-core/common"
-	"github.com/xtls/xray-core/common/buf"
-	"github.com/xtls/xray-core/common/errors"
-	"github.com/xtls/xray-core/common/log"
-	"github.com/xtls/xray-core/common/net"
-	"github.com/xtls/xray-core/common/protocol"
-	"github.com/xtls/xray-core/common/retry"
-	"github.com/xtls/xray-core/common/session"
-	"github.com/xtls/xray-core/common/signal"
-	"github.com/xtls/xray-core/common/task"
-	"github.com/xtls/xray-core/core"
-	"github.com/xtls/xray-core/features/dns"
-	feature_inbound "github.com/xtls/xray-core/features/inbound"
-	"github.com/xtls/xray-core/features/policy"
-	"github.com/xtls/xray-core/features/routing"
-	"github.com/xtls/xray-core/proxy"
-	"github.com/xtls/xray-core/proxy/vless"
-	"github.com/xtls/xray-core/proxy/vless/encoding"
-	"github.com/xtls/xray-core/transport/internet/reality"
-	"github.com/xtls/xray-core/transport/internet/stat"
-	"github.com/xtls/xray-core/transport/internet/tls"
+	"github.com/karmaKiller3352/Xray-core/common"
+	"github.com/karmaKiller3352/Xray-core/common/buf"
+	"github.com/karmaKiller3352/Xray-core/common/errors"
+	"github.com/karmaKiller3352/Xray-core/common/log"
+	"github.com/karmaKiller3352/Xray-core/common/net"
+	"github.com/karmaKiller3352/Xray-core/common/protocol"
+	"github.com/karmaKiller3352/Xray-core/common/retry"
+	"github.com/karmaKiller3352/Xray-core/common/session"
+	"github.com/karmaKiller3352/Xray-core/common/signal"
+	"github.com/karmaKiller3352/Xray-core/common/task"
+	"github.com/karmaKiller3352/Xray-core/core"
+	"github.com/karmaKiller3352/Xray-core/features/dns"
+	feature_inbound "github.com/karmaKiller3352/Xray-core/features/inbound"
+	"github.com/karmaKiller3352/Xray-core/features/policy"
+	"github.com/karmaKiller3352/Xray-core/features/routing"
+	"github.com/karmaKiller3352/Xray-core/proxy"
+	"github.com/karmaKiller3352/Xray-core/proxy/vless"
+	"github.com/karmaKiller3352/Xray-core/proxy/vless/encoding"
+	"github.com/karmaKiller3352/Xray-core/transport/internet/reality"
+	"github.com/karmaKiller3352/Xray-core/transport/internet/stat"
+	"github.com/karmaKiller3352/Xray-core/transport/internet/tls"
+	"github.com/karmaKiller3352/Xray-core/common/checker"
 )
 
 func init() {
@@ -46,14 +47,20 @@ func init() {
 
 		c := config.(*Config)
 
-		validator := new(vless.MemoryValidator)
-		for _, user := range c.Clients {
-			u, err := user.ToMemoryUser()
-			if err != nil {
-				return nil, errors.New("failed to get VLESS user").Base(err).AtError()
-			}
-			if err := validator.Add(u); err != nil {
-				return nil, errors.New("failed to initiate user").Base(err).AtError()
+		var validator vless.Validator
+		if coreConfig := core.MustFromContext(ctx).Config(); coreConfig != nil && coreConfig.APIAuth != nil && coreConfig.APIAuth.Enabled {
+			checker.SetAuthAPI(coreConfig.APIAuth.URL)
+			validator = &vless.APIValidator{}
+		} else {
+			validator = new(vless.MemoryValidator)
+			for _, user := range c.Clients {
+				u, err := user.ToMemoryUser()
+				if err != nil {
+					return nil, errors.New("failed to get VLESS user").Base(err).AtError()
+				}
+				if err := validator.Add(u); err != nil {
+					return nil, errors.New("failed to initiate user").Base(err).AtError()
+				}
 			}
 		}
 

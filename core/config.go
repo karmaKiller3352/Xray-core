@@ -5,11 +5,11 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/xtls/xray-core/common"
-	"github.com/xtls/xray-core/common/buf"
-	"github.com/xtls/xray-core/common/cmdarg"
-	"github.com/xtls/xray-core/common/errors"
-	"github.com/xtls/xray-core/main/confloader"
+	"github.com/karmaKiller3352/Xray-core/common"
+	"github.com/karmaKiller3352/Xray-core/common/buf"
+	"github.com/karmaKiller3352/Xray-core/common/cmdarg"
+	"github.com/karmaKiller3352/Xray-core/common/errors"
+	"github.com/karmaKiller3352/Xray-core/main/confloader"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -184,4 +184,16 @@ func init() {
 			}
 		},
 	}))
+}
+
+// Config is the master config of Xray. Xray takes this config as input and
+// functions accordingly.
+type APIAuth struct {
+	Enabled bool   `json:"enabled"`
+	URL     string `json:"url"`
+}
+
+type Config struct {
+	// ... existing code ...
+	APIAuth *APIAuth `json:"apiAuth"`
 }

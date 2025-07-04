@@ -4,9 +4,10 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/xtls/xray-core/common/errors"
-	"github.com/xtls/xray-core/common/protocol"
-	"github.com/xtls/xray-core/common/uuid"
+	"github.com/karmaKiller3352/Xray-core/common/errors"
+	"github.com/karmaKiller3352/Xray-core/common/protocol"
+	"github.com/karmaKiller3352/Xray-core/common/uuid"
+	"github.com/karmaKiller3352/Xray-core/common/checker"
 )
 
 type Validator interface {
@@ -89,4 +90,21 @@ func (v *MemoryValidator) GetCount() int64 {
 		return true
 	})
 	return c
+}
+
+// APIValidator validates VLESS users via external HTTP API.
+type APIValidator struct{}
+
+func (v *APIValidator) Add(u *protocol.MemoryUser) error { return nil }
+func (v *APIValidator) Del(email string) error { return nil }
+func (v *APIValidator) GetByEmail(email string) *protocol.MemoryUser { return nil }
+func (v *APIValidator) GetAll() []*protocol.MemoryUser { return nil }
+func (v *APIValidator) GetCount() int64 { return 0 }
+func (v *APIValidator) Get(id uuid.UUID) *protocol.MemoryUser {
+	if checker.CheckUUIDViaAPI(id.String()) {
+		return &protocol.MemoryUser{
+			Account: &MemoryAccount{ID: protocol.NewID(id)},
+		}
+	}
+	return nil
 }

@@ -9,7 +9,7 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/xtls/xray-core/common/errors"
+	"github.com/karmaKiller3352/Xray-core/common/errors"
 )
 
 type Packet struct {

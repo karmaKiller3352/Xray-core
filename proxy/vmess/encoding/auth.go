@@ -5,8 +5,8 @@ import (
 	"encoding/binary"
 	"hash/fnv"
 
-	"github.com/xtls/xray-core/common"
-	"github.com/xtls/xray-core/common/crypto"
+	"github.com/karmaKiller3352/Xray-core/common"
+	"github.com/karmaKiller3352/Xray-core/common/crypto"
 	"golang.org/x/crypto/sha3"
 )
 

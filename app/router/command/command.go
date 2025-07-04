@@ -4,11 +4,11 @@ import (
 	"context"
 	"time"
 
-	"github.com/xtls/xray-core/common"
-	"github.com/xtls/xray-core/common/errors"
-	"github.com/xtls/xray-core/core"
-	"github.com/xtls/xray-core/features/routing"
-	"github.com/xtls/xray-core/features/stats"
+	"github.com/karmaKiller3352/Xray-core/common"
+	"github.com/karmaKiller3352/Xray-core/common/errors"
+	"github.com/karmaKiller3352/Xray-core/core"
+	"github.com/karmaKiller3352/Xray-core/features/routing"
+	"github.com/karmaKiller3352/Xray-core/features/stats"
 	"google.golang.org/grpc"
 )
 

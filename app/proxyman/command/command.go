@@ -3,14 +3,14 @@ package command
 import (
 	"context"
 
-	"github.com/xtls/xray-core/app/commander"
-	"github.com/xtls/xray-core/common"
-	"github.com/xtls/xray-core/common/errors"
-	"github.com/xtls/xray-core/common/protocol"
-	"github.com/xtls/xray-core/core"
-	"github.com/xtls/xray-core/features/inbound"
-	"github.com/xtls/xray-core/features/outbound"
-	"github.com/xtls/xray-core/proxy"
+	"github.com/karmaKiller3352/Xray-core/app/commander"
+	"github.com/karmaKiller3352/Xray-core/common"
+	"github.com/karmaKiller3352/Xray-core/common/errors"
+	"github.com/karmaKiller3352/Xray-core/common/protocol"
+	"github.com/karmaKiller3352/Xray-core/core"
+	"github.com/karmaKiller3352/Xray-core/features/inbound"
+	"github.com/karmaKiller3352/Xray-core/features/outbound"
+	"github.com/karmaKiller3352/Xray-core/proxy"
 	grpc "google.golang.org/grpc"
 )
 

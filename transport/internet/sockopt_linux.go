@@ -8,7 +8,7 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/xtls/xray-core/common/errors"
+	"github.com/karmaKiller3352/Xray-core/common/errors"
 	"golang.org/x/sys/unix"
 )
 

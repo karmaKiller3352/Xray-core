@@ -6,11 +6,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/xtls/xray-core/app/router"
-	"github.com/xtls/xray-core/common/errors"
-	"github.com/xtls/xray-core/common/net"
-	"github.com/xtls/xray-core/common/platform/filesystem"
-	"github.com/xtls/xray-core/common/serial"
+	"github.com/karmaKiller3352/Xray-core/app/router"
+	"github.com/karmaKiller3352/Xray-core/common/errors"
+	"github.com/karmaKiller3352/Xray-core/common/net"
+	"github.com/karmaKiller3352/Xray-core/common/platform/filesystem"
+	"github.com/karmaKiller3352/Xray-core/common/serial"
 	"google.golang.org/protobuf/proto"
 )
 

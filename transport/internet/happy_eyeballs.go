@@ -2,7 +2,7 @@ package internet
 
 import (
 	"context"
-	"github.com/xtls/xray-core/common/net"
+	"github.com/karmaKiller3352/Xray-core/common/net"
 	"time"
 )
 

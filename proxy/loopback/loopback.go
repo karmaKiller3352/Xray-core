@@ -3,18 +3,18 @@ package loopback
 import (
 	"context"
 
-	"github.com/xtls/xray-core/common"
-	"github.com/xtls/xray-core/common/buf"
-	"github.com/xtls/xray-core/common/errors"
-	"github.com/xtls/xray-core/common/net"
-	"github.com/xtls/xray-core/common/net/cnc"
-	"github.com/xtls/xray-core/common/retry"
-	"github.com/xtls/xray-core/common/session"
-	"github.com/xtls/xray-core/common/task"
-	"github.com/xtls/xray-core/core"
-	"github.com/xtls/xray-core/features/routing"
-	"github.com/xtls/xray-core/transport"
-	"github.com/xtls/xray-core/transport/internet"
+	"github.com/karmaKiller3352/Xray-core/common"
+	"github.com/karmaKiller3352/Xray-core/common/buf"
+	"github.com/karmaKiller3352/Xray-core/common/errors"
+	"github.com/karmaKiller3352/Xray-core/common/net"
+	"github.com/karmaKiller3352/Xray-core/common/net/cnc"
+	"github.com/karmaKiller3352/Xray-core/common/retry"
+	"github.com/karmaKiller3352/Xray-core/common/session"
+	"github.com/karmaKiller3352/Xray-core/common/task"
+	"github.com/karmaKiller3352/Xray-core/core"
+	"github.com/karmaKiller3352/Xray-core/features/routing"
+	"github.com/karmaKiller3352/Xray-core/transport"
+	"github.com/karmaKiller3352/Xray-core/transport/internet"
 )
 
 type Loopback struct {
