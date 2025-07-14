@@ -12,7 +12,6 @@ import (
 	"strings"
 	"time"
 
-	utls "github.com/refraction-networking/utls"
 	"github.com/karmaKiller3352/Xray-core/common"
 	"github.com/karmaKiller3352/Xray-core/common/crypto"
 	"github.com/karmaKiller3352/Xray-core/common/errors"
@@ -24,6 +23,7 @@ import (
 	dns_feature "github.com/karmaKiller3352/Xray-core/features/dns"
 	"github.com/karmaKiller3352/Xray-core/features/routing"
 	"github.com/karmaKiller3352/Xray-core/transport/internet"
+	utls "github.com/refraction-networking/utls"
 	"golang.org/x/net/http2"
 )
 
@@ -260,5 +260,4 @@ func (s *DoHNameServer) QueryIP(ctx context.Context, domain string, option dns_f
 	ips, ttl, err := s.cacheController.findIPsForDomain(fqdn, option)
 	log.Record(&log.DNSLog{Server: s.Name(), Domain: domain, Result: ips, Status: log.DNSQueried, Elapsed: time.Since(start), Error: err})
 	return ips, ttl, err
-
 }

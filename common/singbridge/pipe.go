@@ -5,9 +5,9 @@ import (
 	"io"
 	"net"
 
-	"github.com/sagernet/sing/common/bufio"
 	"github.com/karmaKiller3352/Xray-core/common/buf"
 	"github.com/karmaKiller3352/Xray-core/transport"
+	"github.com/sagernet/sing/common/bufio"
 )
 
 func CopyConn(ctx context.Context, inboundConn net.Conn, link *transport.Link, serverConn net.Conn) error {

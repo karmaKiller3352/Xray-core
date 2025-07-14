@@ -1,11 +1,10 @@
 package vless
 
 import (
-	"google.golang.org/protobuf/proto"
-
 	"github.com/karmaKiller3352/Xray-core/common/errors"
 	"github.com/karmaKiller3352/Xray-core/common/protocol"
 	"github.com/karmaKiller3352/Xray-core/common/uuid"
+	"google.golang.org/protobuf/proto"
 )
 
 // AsAccount implements protocol.Account.AsAccount().

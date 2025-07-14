@@ -23,13 +23,13 @@ import (
 	"time"
 	"unsafe"
 
-	utls "github.com/refraction-networking/utls"
-	"github.com/xtls/reality"
 	"github.com/karmaKiller3352/Xray-core/common/crypto"
 	"github.com/karmaKiller3352/Xray-core/common/errors"
 	"github.com/karmaKiller3352/Xray-core/common/net"
 	"github.com/karmaKiller3352/Xray-core/core"
 	"github.com/karmaKiller3352/Xray-core/transport/internet/tls"
+	utls "github.com/refraction-networking/utls"
+	"github.com/xtls/reality"
 	"golang.org/x/crypto/hkdf"
 	"golang.org/x/net/http2"
 )

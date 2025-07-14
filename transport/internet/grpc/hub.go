@@ -4,7 +4,6 @@ import (
 	"context"
 	"time"
 
-	goreality "github.com/xtls/reality"
 	"github.com/karmaKiller3352/Xray-core/common"
 	"github.com/karmaKiller3352/Xray-core/common/errors"
 	"github.com/karmaKiller3352/Xray-core/common/net"
@@ -12,6 +11,7 @@ import (
 	"github.com/karmaKiller3352/Xray-core/transport/internet/grpc/encoding"
 	"github.com/karmaKiller3352/Xray-core/transport/internet/reality"
 	"github.com/karmaKiller3352/Xray-core/transport/internet/tls"
+	goreality "github.com/xtls/reality"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/keepalive"

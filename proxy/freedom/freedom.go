@@ -6,7 +6,6 @@ import (
 	"io"
 	"time"
 
-	"github.com/pires/go-proxyproto"
 	"github.com/karmaKiller3352/Xray-core/common"
 	"github.com/karmaKiller3352/Xray-core/common/buf"
 	"github.com/karmaKiller3352/Xray-core/common/crypto"
@@ -27,6 +26,7 @@ import (
 	"github.com/karmaKiller3352/Xray-core/transport/internet"
 	"github.com/karmaKiller3352/Xray-core/transport/internet/stat"
 	"github.com/karmaKiller3352/Xray-core/transport/internet/tls"
+	"github.com/pires/go-proxyproto"
 )
 
 var useSplice bool
@@ -335,7 +335,6 @@ func NewPacketWriter(conn net.Conn, h *Handler, ctx context.Context, UDPOverride
 			Context:           ctx,
 			UDPOverride:       UDPOverride,
 		}
-
 	}
 	return &buf.SequentialWriter{Writer: conn}
 }
@@ -402,18 +401,18 @@ type NoisePacketWriter struct {
 func (w *NoisePacketWriter) WriteMultiBuffer(mb buf.MultiBuffer) error {
 	if w.firstWrite {
 		w.firstWrite = false
-		//Do not send Noise for dns requests(just to be safe)
+		// Do not send Noise for dns requests(just to be safe)
 		if w.UDPOverride.Port == 53 {
 			return w.Writer.WriteMultiBuffer(mb)
 		}
 		var noise []byte
 		var err error
 		for _, n := range w.noises {
-			//User input string or base64 encoded string
+			// User input string or base64 encoded string
 			if n.Packet != nil {
 				noise = n.Packet
 			} else {
-				//Random noise
+				// Random noise
 				noise, err = GenerateRandomBytes(crypto.RandBetween(int64(n.LengthMin),
 					int64(n.LengthMax)))
 			}

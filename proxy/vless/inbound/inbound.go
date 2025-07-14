@@ -32,7 +32,6 @@ import (
 	"github.com/karmaKiller3352/Xray-core/transport/internet/reality"
 	"github.com/karmaKiller3352/Xray-core/transport/internet/stat"
 	"github.com/karmaKiller3352/Xray-core/transport/internet/tls"
-	"github.com/karmaKiller3352/Xray-core/common/checker"
 )
 
 func init() {
@@ -48,10 +47,19 @@ func init() {
 		c := config.(*Config)
 
 		var validator vless.Validator
-		if coreConfig := core.MustFromContext(ctx).Config(); coreConfig != nil && coreConfig.APIAuth != nil && coreConfig.APIAuth.Enabled {
-			checker.SetAuthAPI(coreConfig.APIAuth.URL)
-			validator = &vless.APIValidator{}
-		} else {
+		var mode string
+
+		if c.GetApiAuth() != nil && c.GetApiAuth().GetEnabled() {
+			// API режим
+			log.Record(&log.AccessMessage{
+				Status: log.AccessInfo,
+				Reason: "VLESS inbound работает в режиме API-валидации, clients[] игнорируется",
+			})
+			defaultUser := c.GetDefaultUser()
+			validator = vless.NewAPIValidator(c.GetApiAuth().GetUrl(), defaultUser)
+			mode = "api"
+		} else if c.Clients != nil && len(c.Clients) > 0 {
+			// Обычный режим
 			validator = new(vless.MemoryValidator)
 			for _, user := range c.Clients {
 				u, err := user.ToMemoryUser()
@@ -62,7 +70,20 @@ func init() {
 					return nil, errors.New("failed to initiate user").Base(err).AtError()
 				}
 			}
+			log.Record(&log.AccessMessage{
+				Status: log.AccessInfo,
+				Reason: "VLESS inbound работает в режиме clients[]",
+			})
+			mode = "clients"
+		} else {
+			validator = &vless.APIValidator{} // fallback, не должен использоваться
+			mode = "none"
 		}
+
+		log.Record(&log.AccessMessage{
+			Status: log.AccessInfo,
+			Reason: "VLESS inbound режим: " + mode,
+		})
 
 		return New(ctx, c, dc, validator)
 	}))

@@ -4,12 +4,12 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/stretchr/testify/assert"
 	"github.com/karmaKiller3352/Xray-core/common"
 	"github.com/karmaKiller3352/Xray-core/common/buf"
 	"github.com/karmaKiller3352/Xray-core/common/protocol"
 	"github.com/karmaKiller3352/Xray-core/common/uuid"
 	. "github.com/karmaKiller3352/Xray-core/proxy/vmess/encoding"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestSwitchAccount(t *testing.T) {

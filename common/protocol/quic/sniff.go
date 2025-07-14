@@ -7,12 +7,12 @@ import (
 	"encoding/binary"
 	"io"
 
-	"github.com/quic-go/quic-go/quicvarint"
 	"github.com/karmaKiller3352/Xray-core/common"
 	"github.com/karmaKiller3352/Xray-core/common/buf"
 	"github.com/karmaKiller3352/Xray-core/common/errors"
 	"github.com/karmaKiller3352/Xray-core/common/protocol"
 	ptls "github.com/karmaKiller3352/Xray-core/common/protocol/tls"
+	"github.com/quic-go/quic-go/quicvarint"
 	"golang.org/x/crypto/hkdf"
 )
 

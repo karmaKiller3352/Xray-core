@@ -185,15 +185,3 @@ func init() {
 		},
 	}))
 }
-
-// Config is the master config of Xray. Xray takes this config as input and
-// functions accordingly.
-type APIAuth struct {
-	Enabled bool   `json:"enabled"`
-	URL     string `json:"url"`
-}
-
-type Config struct {
-	// ... existing code ...
-	APIAuth *APIAuth `json:"apiAuth"`
-}

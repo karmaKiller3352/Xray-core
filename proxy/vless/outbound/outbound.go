@@ -8,7 +8,6 @@ import (
 	"time"
 	"unsafe"
 
-	utls "github.com/refraction-networking/utls"
 	"github.com/karmaKiller3352/Xray-core/common"
 	"github.com/karmaKiller3352/Xray-core/common/buf"
 	"github.com/karmaKiller3352/Xray-core/common/errors"
@@ -29,6 +28,7 @@ import (
 	"github.com/karmaKiller3352/Xray-core/transport/internet/reality"
 	"github.com/karmaKiller3352/Xray-core/transport/internet/stat"
 	"github.com/karmaKiller3352/Xray-core/transport/internet/tls"
+	utls "github.com/refraction-networking/utls"
 )
 
 func init() {

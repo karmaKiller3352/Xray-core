@@ -1,13 +1,16 @@
 package vless
 
 import (
+	"fmt"
+	"net/http"
 	"strings"
 	"sync"
+	"time"
 
 	"github.com/karmaKiller3352/Xray-core/common/errors"
+	"github.com/karmaKiller3352/Xray-core/common/log"
 	"github.com/karmaKiller3352/Xray-core/common/protocol"
 	"github.com/karmaKiller3352/Xray-core/common/uuid"
-	"github.com/karmaKiller3352/Xray-core/common/checker"
 )
 
 type Validator interface {
@@ -74,7 +77,7 @@ func (v *MemoryValidator) GetByEmail(email string) *protocol.MemoryUser {
 
 // Get all users
 func (v *MemoryValidator) GetAll() []*protocol.MemoryUser {
-	var u = make([]*protocol.MemoryUser, 0, 100)
+	u := make([]*protocol.MemoryUser, 0, 100)
 	v.email.Range(func(key, value interface{}) bool {
 		u = append(u, value.(*protocol.MemoryUser))
 		return true
@@ -93,18 +96,66 @@ func (v *MemoryValidator) GetCount() int64 {
 }
 
 // APIValidator validates VLESS users via external HTTP API.
-type APIValidator struct{}
+type APIValidator struct {
+	apiURL      string
+	defaultUser *protocol.MemoryUser
+}
 
-func (v *APIValidator) Add(u *protocol.MemoryUser) error { return nil }
-func (v *APIValidator) Del(email string) error { return nil }
-func (v *APIValidator) GetByEmail(email string) *protocol.MemoryUser { return nil }
-func (v *APIValidator) GetAll() []*protocol.MemoryUser { return nil }
-func (v *APIValidator) GetCount() int64 { return 0 }
-func (v *APIValidator) Get(id uuid.UUID) *protocol.MemoryUser {
-	if checker.CheckUUIDViaAPI(id.String()) {
-		return &protocol.MemoryUser{
-			Account: &MemoryAccount{ID: protocol.NewID(id)},
+func NewAPIValidator(apiURL string, defaultUser *protocol.MemoryUser) *APIValidator {
+	var level uint32 = 0
+	var flow, encryption string
+	if defaultUser != nil {
+		level = defaultUser.Level
+		if acc, ok := defaultUser.Account.(*MemoryAccount); ok {
+			flow = acc.Flow
+			encryption = acc.Encryption
 		}
 	}
+	return &APIValidator{
+		apiURL: apiURL,
+		defaultUser: &protocol.MemoryUser{
+			Level: level,
+			Account: &MemoryAccount{
+				Flow:       flow,
+				Encryption: encryption,
+			},
+		},
+	}
+}
+
+func (v *APIValidator) Add(u *protocol.MemoryUser) error             { return nil }
+func (v *APIValidator) Del(email string) error                       { return nil }
+func (v *APIValidator) GetByEmail(email string) *protocol.MemoryUser { return nil }
+func (v *APIValidator) GetAll() []*protocol.MemoryUser               { return nil }
+func (v *APIValidator) GetCount() int64                              { return 0 }
+func (v *APIValidator) Get(id uuid.UUID) *protocol.MemoryUser {
+	// Формируем правильный URL
+	url := v.apiURL
+	if !strings.HasPrefix(url, "http://") && !strings.HasPrefix(url, "https://") {
+		url = "https://" + url
+	}
+	endpoint := fmt.Sprintf("%s%s", url, id.String())
+
+	client := &http.Client{Timeout: 3 * time.Second}
+	log.Record(&log.GeneralMessage{Content: fmt.Sprintf("Попытка аутентификации через API: %s", endpoint)})
+	resp, err := client.Get(endpoint)
+	if err != nil {
+		log.Record(&log.GeneralMessage{Content: fmt.Sprintf("Ошибка запроса к API: %v", err)})
+		return nil
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode == 200 || resp.StatusCode == 204 {
+		log.Record(&log.GeneralMessage{Content: fmt.Sprintf("API ответил %d, uuid %s аутентифицирован", resp.StatusCode, id.String())})
+		user := &protocol.MemoryUser{
+			Level: v.defaultUser.Level,
+			Account: &MemoryAccount{
+				ID:         protocol.NewID(id),
+				Flow:       v.defaultUser.Account.(*MemoryAccount).Flow,
+				Encryption: v.defaultUser.Account.(*MemoryAccount).Encryption,
+			},
+		}
+		return user
+	}
+	log.Record(&log.GeneralMessage{Content: fmt.Sprintf("API ответил %d, uuid %s не аутентифицирован", resp.StatusCode, id.String())})
 	return nil
 }

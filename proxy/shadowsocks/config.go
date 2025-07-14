@@ -6,7 +6,6 @@ import (
 	"crypto/cipher"
 	"crypto/md5"
 	"crypto/sha1"
-	"google.golang.org/protobuf/proto"
 	"io"
 
 	"github.com/karmaKiller3352/Xray-core/common"
@@ -17,6 +16,7 @@ import (
 	"github.com/karmaKiller3352/Xray-core/common/protocol"
 	"golang.org/x/crypto/chacha20poly1305"
 	"golang.org/x/crypto/hkdf"
+	"google.golang.org/protobuf/proto"
 )
 
 // MemoryAccount is an account type converted from Account.

@@ -1,12 +1,11 @@
 package conf
 
 import (
-	"google.golang.org/protobuf/proto"
-
 	"github.com/karmaKiller3352/Xray-core/app/observatory"
 	"github.com/karmaKiller3352/Xray-core/app/observatory/burst"
 	"github.com/karmaKiller3352/Xray-core/common/errors"
 	"github.com/karmaKiller3352/Xray-core/infra/conf/cfgcommon/duration"
+	"google.golang.org/protobuf/proto"
 )
 
 type ObservatoryConfig struct {

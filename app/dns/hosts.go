@@ -2,6 +2,7 @@ package dns
 
 import (
 	"context"
+
 	"github.com/karmaKiller3352/Xray-core/common/errors"
 	"github.com/karmaKiller3352/Xray-core/common/net"
 	"github.com/karmaKiller3352/Xray-core/common/strmatcher"

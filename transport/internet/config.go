@@ -7,9 +7,7 @@ import (
 
 type ConfigCreator func() interface{}
 
-var (
-	globalTransportConfigCreatorCache = make(map[string]ConfigCreator)
-)
+var globalTransportConfigCreatorCache = make(map[string]ConfigCreator)
 
 var strategy = [][]byte{
 	//              name        strategy,   prefer, fallback

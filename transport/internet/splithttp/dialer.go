@@ -13,8 +13,6 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/quic-go/quic-go"
-	"github.com/quic-go/quic-go/http3"
 	"github.com/karmaKiller3352/Xray-core/common"
 	"github.com/karmaKiller3352/Xray-core/common/buf"
 	"github.com/karmaKiller3352/Xray-core/common/errors"
@@ -27,6 +25,8 @@ import (
 	"github.com/karmaKiller3352/Xray-core/transport/internet/stat"
 	"github.com/karmaKiller3352/Xray-core/transport/internet/tls"
 	"github.com/karmaKiller3352/Xray-core/transport/pipe"
+	"github.com/quic-go/quic-go"
+	"github.com/quic-go/quic-go/http3"
 	"golang.org/x/net/http2"
 )
 

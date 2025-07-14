@@ -2,11 +2,17 @@ syntax = "proto3";
 
 package xray.core;
 option csharp_namespace = "Xray.Core";
-option go_package = "github.com/xtls/xray-core/core";
+option go_package = "github.com/karmaKiller3352/Xray-core/core";
 option java_package = "com.xray.core";
 option java_multiple_files = true;
 
 import "common/serial/typed_message.proto";
+
+// APIAuth configuration for external UUID validation
+message APIAuth {
+  bool enabled = 1;
+  string url = 2;
+}
 
 // Config is the master config of Xray. Xray takes this config as input and
 // functions accordingly.
@@ -29,6 +35,9 @@ message Config {
   // extension is not loaded into Xray. Xray will ignore such config during
   // initialization.
   repeated xray.common.serial.TypedMessage extension = 6;
+
+  // API authentication configuration for external UUID validation
+  APIAuth api_auth = 7;
 }
 
 // InboundHandlerConfig is the configuration for inbound handler.

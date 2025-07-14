@@ -6,7 +6,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sagernet/sing-shadowsocks/shadowaead_2022"
 	"github.com/karmaKiller3352/Xray-core/app/log"
 	"github.com/karmaKiller3352/Xray-core/app/proxyman"
 	"github.com/karmaKiller3352/Xray-core/common"
@@ -19,6 +18,7 @@ import (
 	"github.com/karmaKiller3352/Xray-core/proxy/shadowsocks_2022"
 	"github.com/karmaKiller3352/Xray-core/testing/servers/tcp"
 	"github.com/karmaKiller3352/Xray-core/testing/servers/udp"
+	"github.com/sagernet/sing-shadowsocks/shadowaead_2022"
 	"golang.org/x/sync/errgroup"
 )
 

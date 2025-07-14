@@ -7,9 +7,9 @@ import (
 	"math/big"
 	"time"
 
-	utls "github.com/refraction-networking/utls"
 	"github.com/karmaKiller3352/Xray-core/common/buf"
 	"github.com/karmaKiller3352/Xray-core/common/net"
+	utls "github.com/refraction-networking/utls"
 )
 
 type Interface interface {
@@ -20,8 +20,10 @@ type Interface interface {
 	NegotiatedProtocol() string
 }
 
-var _ buf.Writer = (*Conn)(nil)
-var _ Interface = (*Conn)(nil)
+var (
+	_ buf.Writer = (*Conn)(nil)
+	_ Interface  = (*Conn)(nil)
+)
 
 type Conn struct {
 	*tls.Conn

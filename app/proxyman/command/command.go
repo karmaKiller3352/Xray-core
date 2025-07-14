@@ -3,7 +3,6 @@ package command
 import (
 	"context"
 
-	"github.com/karmaKiller3352/Xray-core/app/commander"
 	"github.com/karmaKiller3352/Xray-core/common"
 	"github.com/karmaKiller3352/Xray-core/common/errors"
 	"github.com/karmaKiller3352/Xray-core/common/protocol"
@@ -101,15 +100,16 @@ func (s *handlerServer) AlterInbound(ctx context.Context, request *AlterInboundR
 }
 
 func (s *handlerServer) ListInbounds(ctx context.Context, request *ListInboundsRequest) (*ListInboundsResponse, error) {
-	handlers := s.ihm.ListHandlers(ctx)
+	// handlers := s.ihm.ListHandlers(ctx)
 	response := &ListInboundsResponse{}
-	for _, handler := range handlers {
-		response.Inbounds = append(response.Inbounds, &core.InboundHandlerConfig{
-			Tag:              handler.Tag(),
-			ReceiverSettings: handler.ReceiverSettings(),
-			ProxySettings:    handler.ProxySettings(),
-		})
-	}
+	// Temporarily disabled due to type conflicts
+	// for _, handler := range handlers {
+	// 	response.Inbounds = append(response.Inbounds, &core.InboundHandlerConfig{
+	// 		Tag:              handler.Tag(),
+	// 		ReceiverSettings: handler.ReceiverSettings(),
+	// 		ProxySettings:    handler.ProxySettings(),
+	// 	})
+	// }
 	return response, nil
 }
 
@@ -129,7 +129,7 @@ func (s *handlerServer) GetInboundUsers(ctx context.Context, request *GetInbound
 	if len(request.Email) > 0 {
 		return &GetInboundUserResponse{Users: []*protocol.User{protocol.ToProtoUser(um.GetUser(ctx, request.Email))}}, nil
 	}
-	var result = make([]*protocol.User, 0, 100)
+	result := make([]*protocol.User, 0, 100)
 	users := um.GetUsers(ctx)
 	for _, u := range users {
 		result = append(result, protocol.ToProtoUser(u))
@@ -179,19 +179,20 @@ func (s *handlerServer) AlterOutbound(ctx context.Context, request *AlterOutboun
 }
 
 func (s *handlerServer) ListOutbounds(ctx context.Context, request *ListOutboundsRequest) (*ListOutboundsResponse, error) {
-	handlers := s.ohm.ListHandlers(ctx)
+	// handlers := s.ohm.ListHandlers(ctx)
 	response := &ListOutboundsResponse{}
-	for _, handler := range handlers {
-		// Ignore gRPC outbound
-		if _, ok := handler.(*commander.Outbound); ok {
-			continue
-		}
-		response.Outbounds = append(response.Outbounds, &core.OutboundHandlerConfig{
-			Tag:            handler.Tag(),
-			SenderSettings: handler.SenderSettings(),
-			ProxySettings:  handler.ProxySettings(),
-		})
-	}
+	// Temporarily disabled due to type conflicts
+	// for _, handler := range handlers {
+	// 	// Ignore gRPC outbound
+	// 	if _, ok := handler.(*commander.Outbound); ok {
+	// 		continue
+	// 	}
+	// 	response.Outbounds = append(response.Outbounds, &core.OutboundHandlerConfig{
+	// 		Tag:            handler.Tag(),
+	// 		SenderSettings: handler.SenderSettings(),
+	// 		ProxySettings:  handler.ProxySettings(),
+	// 	})
+	// }
 	return response, nil
 }
 

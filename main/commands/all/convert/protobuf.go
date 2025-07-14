@@ -8,7 +8,6 @@ import (
 	creflect "github.com/karmaKiller3352/Xray-core/common/reflect"
 	"github.com/karmaKiller3352/Xray-core/core"
 	"github.com/karmaKiller3352/Xray-core/main/commands/base"
-
 	"google.golang.org/protobuf/proto"
 )
 
@@ -37,7 +36,6 @@ Examples:
 }
 
 func executeConvertConfigsToProtobuf(cmd *base.Command, args []string) {
-
 	var optDump bool
 	var optType bool
 

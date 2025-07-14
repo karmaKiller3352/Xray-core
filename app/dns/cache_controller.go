@@ -3,6 +3,9 @@ package dns
 import (
 	"context"
 	go_errors "errors"
+	"sync"
+	"time"
+
 	"github.com/karmaKiller3352/Xray-core/common"
 	"github.com/karmaKiller3352/Xray-core/common/errors"
 	"github.com/karmaKiller3352/Xray-core/common/net"
@@ -10,8 +13,6 @@ import (
 	"github.com/karmaKiller3352/Xray-core/common/task"
 	dns_feature "github.com/karmaKiller3352/Xray-core/features/dns"
 	"golang.org/x/net/dns/dnsmessage"
-	"sync"
-	"time"
 )
 
 type CacheController struct {

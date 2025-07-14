@@ -6,9 +6,9 @@ import (
 	"syscall"
 	"testing"
 
-	"github.com/sagernet/sing/common/control"
 	"github.com/karmaKiller3352/Xray-core/common"
 	"github.com/karmaKiller3352/Xray-core/transport/internet"
+	"github.com/sagernet/sing/common/control"
 )
 
 func TestRegisterListenerController(t *testing.T) {

@@ -4,13 +4,6 @@ import (
 	"context"
 	"time"
 
-	shadowsocks "github.com/sagernet/sing-shadowsocks"
-	"github.com/sagernet/sing-shadowsocks/shadowaead_2022"
-	C "github.com/sagernet/sing/common"
-	B "github.com/sagernet/sing/common/buf"
-	"github.com/sagernet/sing/common/bufio"
-	N "github.com/sagernet/sing/common/network"
-	"github.com/sagernet/sing/common/uot"
 	"github.com/karmaKiller3352/Xray-core/common"
 	"github.com/karmaKiller3352/Xray-core/common/buf"
 	"github.com/karmaKiller3352/Xray-core/common/errors"
@@ -19,6 +12,13 @@ import (
 	"github.com/karmaKiller3352/Xray-core/common/singbridge"
 	"github.com/karmaKiller3352/Xray-core/transport"
 	"github.com/karmaKiller3352/Xray-core/transport/internet"
+	shadowsocks "github.com/sagernet/sing-shadowsocks"
+	"github.com/sagernet/sing-shadowsocks/shadowaead_2022"
+	C "github.com/sagernet/sing/common"
+	B "github.com/sagernet/sing/common/buf"
+	"github.com/sagernet/sing/common/bufio"
+	N "github.com/sagernet/sing/common/network"
+	"github.com/sagernet/sing/common/uot"
 )
 
 func init() {

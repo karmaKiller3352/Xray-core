@@ -9,7 +9,6 @@ import (
 	"sync"
 	"time"
 
-	"github.com/quic-go/quic-go"
 	"github.com/karmaKiller3352/Xray-core/common/buf"
 	"github.com/karmaKiller3352/Xray-core/common/errors"
 	"github.com/karmaKiller3352/Xray-core/common/log"
@@ -18,6 +17,7 @@ import (
 	"github.com/karmaKiller3352/Xray-core/common/session"
 	dns_feature "github.com/karmaKiller3352/Xray-core/features/dns"
 	"github.com/karmaKiller3352/Xray-core/transport/internet/tls"
+	"github.com/quic-go/quic-go"
 	"golang.org/x/net/http2"
 )
 
@@ -217,7 +217,6 @@ func (s *QUICNameServer) QueryIP(ctx context.Context, domain string, option dns_
 	ips, ttl, err := s.cacheController.findIPsForDomain(fqdn, option)
 	log.Record(&log.DNSLog{Server: s.Name(), Domain: domain, Result: ips, Status: log.DNSQueried, Elapsed: time.Since(start), Error: err})
 	return ips, ttl, err
-
 }
 
 func isActive(s quic.Connection) bool {

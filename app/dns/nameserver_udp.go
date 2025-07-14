@@ -207,5 +207,4 @@ func (s *ClassicNameServer) QueryIP(ctx context.Context, domain string, option d
 	ips, ttl, err := s.cacheController.findIPsForDomain(fqdn, option)
 	log.Record(&log.DNSLog{Server: s.Name(), Domain: domain, Result: ips, Status: log.DNSQueried, Elapsed: time.Since(start), Error: err})
 	return ips, ttl, err
-
 }

@@ -9,10 +9,10 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/pires/go-proxyproto"
-	"github.com/sagernet/sing/common/control"
 	"github.com/karmaKiller3352/Xray-core/common/errors"
 	"github.com/karmaKiller3352/Xray-core/common/net"
+	"github.com/pires/go-proxyproto"
+	"github.com/sagernet/sing/common/control"
 )
 
 var effectiveListener = DefaultListener{}

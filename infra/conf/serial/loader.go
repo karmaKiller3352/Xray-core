@@ -6,11 +6,11 @@ import (
 	"io"
 
 	"github.com/ghodss/yaml"
-	"github.com/pelletier/go-toml"
 	"github.com/karmaKiller3352/Xray-core/common/errors"
 	"github.com/karmaKiller3352/Xray-core/core"
 	"github.com/karmaKiller3352/Xray-core/infra/conf"
 	json_reader "github.com/karmaKiller3352/Xray-core/infra/conf/json"
+	"github.com/pelletier/go-toml"
 )
 
 type offset struct {

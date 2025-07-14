@@ -4,11 +4,11 @@ import (
 	"context"
 	"os"
 
-	"github.com/sagernet/sing/common/uot"
 	"github.com/karmaKiller3352/Xray-core/common/errors"
 	"github.com/karmaKiller3352/Xray-core/common/net"
 	"github.com/karmaKiller3352/Xray-core/transport/internet"
 	"github.com/karmaKiller3352/Xray-core/transport/internet/stat"
+	"github.com/sagernet/sing/common/uot"
 )
 
 func (h *Handler) getUoTConnection(ctx context.Context, dest net.Destination) (stat.Connection, error) {

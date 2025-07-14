@@ -1,9 +1,8 @@
 package http
 
 import (
-	"google.golang.org/protobuf/proto"
-
 	"github.com/karmaKiller3352/Xray-core/common/protocol"
+	"google.golang.org/protobuf/proto"
 )
 
 func (a *Account) Equals(another protocol.Account) bool {

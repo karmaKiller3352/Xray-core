@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package xray.proxy.vless.inbound;
 option csharp_namespace = "Xray.Proxy.Vless.Inbound";
-option go_package = "github.com/xtls/xray-core/proxy/vless/inbound";
+option go_package = "github.com/karmaKiller3352/Xray-core/proxy/vless/inbound";
 option java_package = "com.xray.proxy.vless.inbound";
 option java_multiple_files = true;
 
@@ -17,10 +17,24 @@ message Fallback {
   uint64 xver = 6;
 }
 
+message DefaultUser {
+  uint32 level = 1;
+  string flow = 2;
+  string encryption = 3;
+}
+
+message APIAuth {
+  bool enabled = 1;
+  string url = 2;
+  uint32 maxConnections = 3;
+}
+
 message Config {
   repeated xray.common.protocol.User clients = 1;
   // Decryption settings. Only applies to server side, and only accepts "none"
   // for now.
   string decryption = 2;
   repeated Fallback fallbacks = 3;
+  DefaultUser defaultUser = 4;
+  APIAuth apiAuth = 5;
 }

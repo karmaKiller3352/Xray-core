@@ -7,14 +7,6 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/sagernet/sing-shadowsocks/shadowaead_2022"
-	C "github.com/sagernet/sing/common"
-	A "github.com/sagernet/sing/common/auth"
-	B "github.com/sagernet/sing/common/buf"
-	"github.com/sagernet/sing/common/bufio"
-	E "github.com/sagernet/sing/common/exceptions"
-	M "github.com/sagernet/sing/common/metadata"
-	N "github.com/sagernet/sing/common/network"
 	"github.com/karmaKiller3352/Xray-core/common"
 	"github.com/karmaKiller3352/Xray-core/common/buf"
 	"github.com/karmaKiller3352/Xray-core/common/errors"
@@ -26,6 +18,14 @@ import (
 	"github.com/karmaKiller3352/Xray-core/common/uuid"
 	"github.com/karmaKiller3352/Xray-core/features/routing"
 	"github.com/karmaKiller3352/Xray-core/transport/internet/stat"
+	"github.com/sagernet/sing-shadowsocks/shadowaead_2022"
+	C "github.com/sagernet/sing/common"
+	A "github.com/sagernet/sing/common/auth"
+	B "github.com/sagernet/sing/common/buf"
+	"github.com/sagernet/sing/common/bufio"
+	E "github.com/sagernet/sing/common/exceptions"
+	M "github.com/sagernet/sing/common/metadata"
+	N "github.com/sagernet/sing/common/network"
 )
 
 func init() {

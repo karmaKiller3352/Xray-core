@@ -306,9 +306,8 @@ func (h *Handler) Dial(ctx context.Context, dest net.Destination) (stat.Connecti
 							errors.LogDebug(ctx, "use client src ip as snedthrough: ", clientaddr)
 						}
 					}
-
 				}
-			//case addr.Family().IsDomain():
+			// case addr.Family().IsDomain():
 			default:
 				ob.Gateway = addr
 
@@ -368,7 +367,6 @@ func (h *Handler) ProxySettings() *serial.TypedMessage {
 }
 
 func ParseRandomIP(addr net.Address, prefix string) net.Address {
-
 	_, ipnet, _ := gonet.ParseCIDR(addr.IP().String() + "/" + prefix)
 
 	ones, bits := ipnet.Mask.Size()

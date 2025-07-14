@@ -2,7 +2,6 @@ package scenarios
 
 import (
 	"testing"
-	//"time"
 
 	"github.com/karmaKiller3352/Xray-core/app/log"
 	"github.com/karmaKiller3352/Xray-core/app/proxyman"
@@ -17,7 +16,6 @@ import (
 	"github.com/karmaKiller3352/Xray-core/proxy/wireguard"
 	"github.com/karmaKiller3352/Xray-core/testing/servers/tcp"
 	"github.com/karmaKiller3352/Xray-core/testing/servers/udp"
-	//"golang.org/x/sync/errgroup"
 )
 
 func TestWireguard(t *testing.T) {
